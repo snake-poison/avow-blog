@@ -17,7 +17,7 @@ const props = defineProps<{
     </UIText>
     <UIHeading :level="props.level ?? 2" size="sm" class="mt-2">
       <!-- The link covers the card, so the whole card is one target with one accessible name. -->
-      <NuxtLink :to="props.post.path" class="after:absolute after:inset-0 group-hover:text-accent">
+      <NuxtLink :to="props.post.path" class="group-hover:text-accent after:absolute after:inset-0">
         {{ props.post.title }}
       </NuxtLink>
     </UIHeading>

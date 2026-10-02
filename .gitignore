@@ -9,3 +9,4 @@ tsconfig.tsbuildinfo
 .eslintcache
 .claude/settings.local.json
 coverage
+.data

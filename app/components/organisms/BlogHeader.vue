@@ -8,7 +8,9 @@ import { audienceIds, audiences, siteName } from '~/constants/site'
       <NuxtLink to="/" class="flex items-center gap-2.5 text-ink" :aria-label="`${siteName} home`">
         <UIAppLogo class="h-7 w-auto" />
         <span class="font-heading text-xl font-bold tracking-[0.01em]">Avow</span>
-        <UIText as="span" variant="kicker">Blog</UIText>
+        <UIText as="span" variant="kicker">
+          Blog
+        </UIText>
       </NuxtLink>
 
       <nav aria-label="Topics" class="flex items-center gap-1">

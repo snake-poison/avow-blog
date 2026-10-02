@@ -2,6 +2,7 @@ import process from 'node:process'
 import tailwindcss from '@tailwindcss/vite'
 import { defineNuxtConfig } from 'nuxt/config'
 import { publisher, siteDescription, siteName } from './app/constants/site'
+import { themeScript } from './app/constants/themeScript'
 import { readingMinutes } from './app/utils/readingTime'
 
 // The canonical origin. Set NUXT_SITE_URL when the blog moves to its own domain. GitHub Pages
@@ -31,31 +32,44 @@ export default defineNuxtConfig({
     name: siteName,
     description: siteDescription,
     defaultLocale: 'en',
-    trailingSlash: false,
+    // GitHub Pages serves /blog/x/index.html at /blog/x/ and redirects /blog/x there, so every
+    // URL ends in a slash: canonicals, the sitemap and (below) every NuxtLink.
+    trailingSlash: true,
   },
 
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
       link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'icon', href: `${baseURL}favicon.ico`, sizes: 'any' },
+        { rel: 'apple-touch-icon', href: `${baseURL}apple-touch-icon.png` },
         // No font preloads: fonts.css says why.
       ],
       script: [
-        {
-          // Runs before the inlined styles, so a dark-mode reader never sees a light first
-          // frame. The color-mode module's own script only runs after them (Avow #442).
-          innerHTML: `(function(){const e=window.matchMedia('(prefers-color-scheme: dark)').matches,t=localStorage.getItem('nuxt-color-mode');('dark'===t||!t&&e)&&document.documentElement.classList.add('dark')})();`,
-          type: 'text/javascript',
-        },
+        // The theme: first frame and toggle (app/constants/themeScript.ts).
+        { innerHTML: `(${themeScript.toString()})()`, tagPriority: 'critical' },
       ],
     },
   },
 
+  // Every page is prerendered HTML and CSS with no Nuxt runtime: about 100 KB of compressed
+  // JS (Vue, the router, the content client) that a page of text never needed. Links are
+  // plain page loads, which for a 14 KB page cost less than the runtime did. Drop this rule
+  // for a route that gains an interactive component.
+  routeRules: {
+    '/**': { noScripts: true },
+  },
+
   css: ['~/assets/css/main.css'],
 
+  // Components go by their file name (PostCard, not MoleculesPostCard), as in Avow.
+  components: [
+    { path: '~/components', pathPrefix: false },
+  ],
+
   content: {
+    // Node 24's built-in node:sqlite for the build database, so there is no native module to compile.
+    experimental: { sqliteConnector: 'native' },
     build: {
       markdown: {
         highlight: {
@@ -72,6 +86,18 @@ export default defineNuxtConfig({
 
   experimental: {
     typedPages: true,
+    // No runtime reads a payload (routeRules), so none is written.
+    payloadExtraction: false,
+    defaults: {
+      nuxtLink: { trailingSlash: 'append' },
+    },
+  },
+
+  // content.config.ts and vitest.config.ts run in Node like this file, so they type-check with it.
+  typescript: {
+    nodeTsConfig: {
+      include: ['../content.config.ts', '../vitest.config.ts'],
+    },
   },
 
   compatibilityDate: '2026-01-01',
@@ -80,11 +106,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       failOnError: true,
-      routes: ['/', '/sitemap.xml', '/robots.txt', '/llms.txt', '/llms-full.txt'],
-      // /blog/<slug>.html, not /blog/<slug>/index.html. GitHub Pages serves the first at
-      // /blog/<slug> and redirects the second to /blog/<slug>/, a hop on every visit and a URL
-      // that no longer matches the canonical.
-      autoSubfolderIndex: false,
+      // The crawler starts at /; the sitemap, robots and llms modules add their own files.
     },
     compressPublicAssets: false,
   },
@@ -120,8 +142,13 @@ export default defineNuxtConfig({
 
   ogImage: {
     zeroRuntime: true,
-    // Satori cannot read woff2, hence the woff copies under layers/ui/public/og-fonts.
+    // Satori cannot read woff2, hence the woff copies in public/og-fonts. They live in the
+    // app's public/ and not the layer's: while prerendering, nuxt-og-image reads fonts from
+    // there only, and anything else 404s and quietly falls back to Inter.
     defaults: {
+      // The size every platform's large card expects.
+      width: 1200,
+      height: 630,
       fonts: [
         { name: 'Archivo Narrow', weight: 700, path: '/og-fonts/archivo-narrow-700.woff' },
         { name: 'IBM Plex Mono', weight: 500, path: '/og-fonts/ibm-plex-mono-500.woff' },

@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v6.1.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Unit tests
+        run: pnpm run test:unit
+
+      # The site specs read the built output: SEO tags, structured data, sitemap, llms.txt,
+      # drafts and the page-weight budgets.
+      - name: Build
+        run: pnpm run generate
+
+      - name: Site tests
+        run: pnpm run test:site
+        env:
+          SITE_BUILD: skip
+
+  # GitHub Pages, from main only. Settings > Pages > Source must be "GitHub Actions".
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v6.1.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      # The origin and path Pages serves the site at: https://<owner>.github.io and /<repo>/,
+      # or the custom domain and / once one is set.
+      - name: Build
+        run: pnpm run generate
+        env:
+          NUXT_SITE_URL: ${{ steps.pages.outputs.origin }}
+          NUXT_APP_BASE_URL: ${{ steps.pages.outputs.base_path }}/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
