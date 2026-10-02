@@ -23,7 +23,7 @@ const { data: posts } = await useAsyncData('posts:recent', () => queryPosts().li
         Plain answers on property insurance claims
       </UIHeading>
       <UIText class="mt-4 text-base sm:text-lg">
-        {{ siteDescription }}
+        For homeowners, insurance professionals and public adjusters, from the team behind Avow.
       </UIText>
     </section>
 

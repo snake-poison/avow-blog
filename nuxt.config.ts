@@ -5,9 +5,9 @@ import { publisher, siteDescription, siteName } from './app/constants/site'
 import { themeScript } from './app/constants/themeScript'
 import { readingMinutes } from './app/utils/readingTime'
 
-// The canonical origin. Set NUXT_SITE_URL when the blog moves to its own domain. GitHub Pages
-// serves a project site under /<repo>/, which the deploy workflow passes as NUXT_APP_BASE_URL.
-const siteUrl = process.env.NUXT_SITE_URL ?? 'https://snake-poison.github.io'
+// The canonical origin, blog.itsavow.com (public/CNAME). NUXT_SITE_URL and NUXT_APP_BASE_URL
+// are for building it to serve somewhere else, such as a preview under a path.
+const siteUrl = process.env.NUXT_SITE_URL ?? 'https://blog.itsavow.com'
 const baseURL = process.env.NUXT_APP_BASE_URL ?? '/'
 
 export default defineNuxtConfig({
@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/content',
+    '@nuxt/image',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     'nuxt-schema-org',
@@ -64,8 +65,18 @@ export default defineNuxtConfig({
 
   // Components go by their file name (PostCard, not MoleculesPostCard), as in Avow.
   components: [
+    // The components a post's Markdown can use (::post-photo, ::post-steps): Nuxt Content
+    // resolves them by name at render time, so they are registered globally.
+    { path: '~/components/content', pathPrefix: false, global: true },
     { path: '~/components', pathPrefix: false },
   ],
+
+  // Photos are resized and re-encoded at build time (ipx) into AVIF and WebP at the widths a
+  // page asks for; the page ships a <picture> of static files.
+  image: {
+    quality: 70,
+    format: ['avif', 'webp'],
+  },
 
   content: {
     // Node 24's built-in node:sqlite for the build database, so there is no native module to compile.

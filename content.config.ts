@@ -21,9 +21,14 @@ const blog = defineCollection({
     audience: z.array(z.enum(audienceIds)).min(1),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // The lead photo: a path under public/, shown under the title and on the post's card.
     image: z.object({
-      src: z.string(),
+      src: z.string().startsWith('/'),
       alt: z.string(),
+      caption: z.string().optional(),
+      // Who took it, and the page that licenses it.
+      credit: z.string(),
+      creditUrl: z.url().optional(),
     }).optional(),
     // The answer in two or three sentences, shown above the body. Search and answer engines
     // quote the first plain statement on a page, so this is the one they should find.

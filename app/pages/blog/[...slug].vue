@@ -72,40 +72,47 @@ useSchemaOrg([
 ])
 
 defineOgImage('AvowBlog', { title: page.title, kicker: mainAudience.label })
+
+// The post's h2s, for the outline beside the body.
+const toc = page.body.toc?.links ?? []
 </script>
 
 <template>
-  <article class="mx-auto max-w-3xl">
-    <nav aria-label="Breadcrumb">
-      <UIText variant="label" as="div">
-        <ol class="flex flex-wrap items-center gap-2">
-          <li>
-            <NuxtLink to="/" class="hover:text-ink">
-              Home
-            </NuxtLink>
-          </li>
-          <li aria-hidden="true">
-            /
-          </li>
-          <li>
-            <NuxtLink to="/blog" class="hover:text-ink">
-              Blog
-            </NuxtLink>
-          </li>
-        </ol>
-      </UIText>
-    </nav>
+  <article>
+    <header class="mx-auto max-w-3xl text-center">
+      <nav aria-label="Breadcrumb">
+        <UIText variant="label" as="div">
+          <ol class="flex flex-wrap items-center justify-center gap-2">
+            <li>
+              <NuxtLink to="/" class="hover:text-ink">
+                Home
+              </NuxtLink>
+            </li>
+            <li aria-hidden="true">
+              /
+            </li>
+            <li>
+              <NuxtLink to="/blog" class="hover:text-ink">
+                Blog
+              </NuxtLink>
+            </li>
+          </ol>
+        </UIText>
+      </nav>
 
-    <header class="mt-6">
-      <UIText variant="kicker" as="p" class="flex flex-wrap gap-x-3">
+      <UIText variant="kicker" as="p" class="mt-8 flex flex-wrap justify-center gap-x-4">
         <NuxtLink v-for="id in page.audience" :key="id" :to="`/for/${id}`" class="hover:underline">
           For {{ audiences[id].label.toLowerCase() }}
         </NuxtLink>
       </UIText>
-      <UIHeading :level="1" size="xl" class="mt-3">
+      <!-- Display size, past the atom's largest: the one headline on the page. -->
+      <h1 class="mt-4 font-heading text-4xl/[1.05] font-bold tracking-[0.01em] text-balance text-ink sm:text-5xl/[1.02] lg:text-6xl/[1]">
         {{ page.title }}
-      </UIHeading>
-      <UIText variant="label" as="p" class="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1">
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg/relaxed text-pretty text-ink-soft">
+        {{ page.description }}
+      </p>
+      <UIText variant="label" as="p" class="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
         <span v-if="author">By {{ author.name }}</span>
         <span v-if="author" aria-hidden="true">·</span>
         <time :datetime="published">{{ formatDate(page.date) }}</time>
@@ -121,47 +128,83 @@ defineOgImage('AvowBlog', { title: page.title, kicker: mainAudience.label })
       </UIBadge>
     </header>
 
-    <UICard v-if="page.summary" variant="callout" tone="info" radius="2xl" class="mt-8">
-      <UIText variant="label" as="h2">
-        In short
-      </UIText>
-      <UIText class="mt-2 text-base text-ink">
-        {{ page.summary }}
-      </UIText>
-    </UICard>
+    <PostPhoto
+      v-if="page.image"
+      lead
+      :src="page.image.src"
+      :alt="page.image.alt"
+      :credit="page.image.credit"
+      :credit-url="page.image.creditUrl"
+      class="mt-10 sm:mt-12"
+    >
+      {{ page.image.caption }}
+    </PostPhoto>
 
-    <ContentRenderer :value="page" class="post-body mt-8" />
+    <div class="mt-10 grid gap-x-14 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_13rem]">
+      <div class="min-w-0">
+        <UICard v-if="page.summary" as="section" variant="callout" tone="accent" radius="2xl" aria-label="In short">
+          <UIText variant="kicker" as="p" tone="accent" class="flex items-center gap-2">
+            <span class="icon-[carbon--flash-filled] text-sm" aria-hidden="true" />
+            In short
+          </UIText>
+          <p class="mt-3 text-lg/relaxed text-ink">
+            {{ page.summary }}
+          </p>
+        </UICard>
 
-    <PostFaq v-if="page.faq.length > 0" :items="page.faq" class="mt-14" />
+        <ContentRenderer :value="page" class="post-body mt-10" />
 
-    <footer class="mt-14 space-y-8">
-      <ul v-if="page.tags.length > 0" class="flex flex-wrap gap-2" aria-label="Tags">
-        <li v-for="tag in page.tags" :key="tag">
-          <NuxtLink :to="`/tags/${tagSlug(tag)}`">
-            <UIBadge variant="outline">
-              {{ tag }}
-            </UIBadge>
-          </NuxtLink>
-        </li>
-      </ul>
+        <PostFaq v-if="page.faq.length > 0" :items="page.faq" class="mt-16" />
 
-      <UICard v-if="author" as="section" radius="2xl" aria-label="About the author">
-        <UIText variant="label">
-          Written by
-        </UIText>
-        <UIText variant="title" class="mt-2 text-base">
-          {{ author.name }}
-        </UIText>
-        <UIText variant="small">
-          {{ author.role }}
-        </UIText>
-        <UIText class="mt-3">
-          {{ author.bio }}
-        </UIText>
-      </UICard>
-    </footer>
+        <footer class="mt-14 space-y-8">
+          <ul v-if="page.tags.length > 0" class="flex flex-wrap gap-2" aria-label="Tags">
+            <li v-for="tag in page.tags" :key="tag">
+              <NuxtLink :to="`/tags/${tagSlug(tag)}`">
+                <UIBadge variant="outline">
+                  {{ tag }}
+                </UIBadge>
+              </NuxtLink>
+            </li>
+          </ul>
 
-    <section v-if="related && related.length > 0" aria-labelledby="related-heading" class="mt-14">
+          <UICard v-if="author" as="section" radius="2xl" aria-label="About the author" class="flex gap-4">
+            <UIAppLogo class="size-12 shrink-0" />
+            <div>
+              <UIText variant="label">
+                Written by
+              </UIText>
+              <UIText variant="title" class="mt-1 text-base">
+                {{ author.name }}
+              </UIText>
+              <UIText variant="small">
+                {{ author.role }}
+              </UIText>
+              <UIText class="mt-3">
+                {{ author.bio }}
+              </UIText>
+            </div>
+          </UICard>
+        </footer>
+      </div>
+
+      <!-- The outline, beside the body on wide screens. Plain anchor links: no script. -->
+      <aside v-if="toc.length > 0" class="hidden lg:block" aria-labelledby="toc-heading">
+        <nav class="sticky top-8">
+          <UIText id="toc-heading" variant="label" as="h2">
+            On this page
+          </UIText>
+          <ol class="mt-4 space-y-2.5 border-l border-rule-soft">
+            <li v-for="link in toc" :key="link.id">
+              <a :href="`#${link.id}`" class="-ml-px block border-l border-transparent pl-4 text-sm/snug text-ink-soft hover:border-accent hover:text-ink">
+                {{ link.text }}
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+
+    <section v-if="related && related.length > 0" aria-labelledby="related-heading" class="mt-20">
       <UIHeading id="related-heading" :level="2" size="xs" uppercase>
         Keep reading
       </UIHeading>

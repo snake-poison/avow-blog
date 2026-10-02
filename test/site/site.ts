@@ -2,7 +2,18 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
 
 export const publicDir = '.output/public'
-export const siteUrl = 'https://snake-poison.github.io'
+export const siteUrl = 'https://blog.itsavow.com'
+
+/**
+ * A draft post the test build adds to content/blog (test/setup/buildSite.ts), so the specs
+ * can check a draft never ships without the blog keeping one in its content.
+ */
+export const draftFixture = {
+  source: 'test/fixtures/draft-post.md',
+  target: 'content/blog/test-draft-fixture.md',
+  slug: 'test-draft-fixture',
+  path: '/blog/test-draft-fixture/',
+}
 
 /** Every page a reader can land on, by URL path (`/blog/x/`), with its built file. */
 export function pages(): Array<{ path: string, file: string }> {

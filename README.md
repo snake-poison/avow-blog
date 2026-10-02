@@ -2,7 +2,8 @@
 
 Plain answers on property insurance claims for homeowners, insurance professionals and public
 adjusters. A static site built with Nuxt 4 and Nuxt Content, on the same stack and design
-system as the [Avow app](https://github.com/snake-poison/Avow), served from GitHub Pages.
+system as the [Avow app](https://github.com/snake-poison/Avow), served from GitHub Pages at
+[blog.itsavow.com](https://blog.itsavow.com).
 
 ## Writing a post
 
@@ -17,6 +18,12 @@ updated: 2026-11-01          # optional; shown, and used as dateModified
 author: avow-team            # content/authors/<id>.yml
 audience: [homeowners, public-adjusters]   # one or more of: homeowners, insurance, public-adjusters
 tags: [Claims process]       # each gets a page at /tags/<slug>/
+image:                       # optional; the lead photo, also on the post's card
+  src: /images/blog/<slug>/lead.jpg
+  alt: What the photo shows, for someone who cannot see it.
+  caption: optional
+  credit: Name / Source
+  creditUrl: https://…       # the page that licenses it
 summary: The answer in two or three plain sentences, shown first.
 faq:                         # optional; a FAQ section and schema.org FAQPage
   - question: …
@@ -26,6 +33,27 @@ draft: true                  # shown in `pnpm dev`, never built
 ```
 
 The build fails on a post that breaks the schema in `content.config.ts`.
+
+**Photos** go in `public/images/blog/<slug>/`, as JPEGs about 2000px wide. The build turns each
+into AVIF and WebP at the widths the page needs. Use photos you have the rights to: the first
+post's are public-domain FEMA photos from Wikimedia Commons, credited anyway.
+
+**Blocks** for the body, from `app/components/content` (styled in `assets/css/prose.css`):
+
+```md
+::post-steps                      numbered steps on a rail; each ## inside is a step
+:post-when[Within 24 hours]       a kicker over the next step's heading
+## Report the claim
+::
+
+::post-photo{src="/images/blog/x/y.jpg" alt="…" credit="Name / FEMA" credit-url="https://…"}
+The caption.
+::
+
+::post-callout{tone="danger" title="Leave first"}   tone: accent, info, warn, danger
+::post-pullquote                  the one line to remember, set large
+::post-checklist{title="…"}       a task list (- [ ] …) as a printable card
+```
 
 **For search and answer engines.** Put the answer first: the `summary`, then a first paragraph
 that states it plainly. Use question-shaped `##` headings where a reader would ask one. Add an
@@ -63,7 +91,7 @@ pnpm ds:diff      # compare the design system with ~/Code/Avow
 ```
 app/
   pages/           /, /blog/, /blog/<slug>/, /for/<audience>/, /tags/<tag>/
-  components/      molecules and organisms built from the layer's atoms
+  components/      molecules and organisms built from the layer's atoms; content/ for posts
   constants/       site identity and audiences (site.ts), the theme script
   utils/           post queries, formatting, reading time
   assets/css/      the Tailwind entry and post body styles
@@ -71,10 +99,12 @@ components/OgImage the share card
 content/
   blog/            posts
   authors/         authors
+public/images/blog/  post photos
 layers/ui/         Avow's design system
 test/
   unit/            pure functions
   site/            the built site
+  fixtures/        a draft the test build adds, to check drafts never ship
 ```
 
 ## Deploying
@@ -83,7 +113,7 @@ Pushing to `main` runs `.github/workflows/ci.yml`: lint, typecheck, tests, the b
 checks, then a deploy to GitHub Pages. In the repository settings, set Pages > Source to
 "GitHub Actions".
 
-Serve it from a custom domain (for example `blog.itsavow.com`): set it under Settings > Pages,
-and the workflow builds for it. On the default `snake-poison.github.io/avow-public/` the site
-works, but crawlers ignore a `robots.txt` below the domain root, so none is published, and the
-sitemap lists the base path twice.
+The site is built for `https://blog.itsavow.com` (`nuxt.config.ts`, `public/CNAME`). DNS, in
+Cloudflare: a `CNAME` record from `blog` to `snake-poison.github.io`, set to DNS only (not
+proxied) so GitHub can issue the certificate. Then Settings > Pages > Custom domain is
+`blog.itsavow.com`, with Enforce HTTPS on.
