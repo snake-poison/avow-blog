@@ -1,0 +1,19 @@
+minimumReleaseAgeExcludePrune: true
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # Legacy 6.x line; only newer 7.x releases carry provenance.
+  - semver@6.3.1
+trustPolicyExcludePrune: true
+
+shellEmulator: true
+
+patchedDependencies:
+  '@iconify/tailwind4@1.2.3': patches/@iconify__tailwind4@1.2.3.patch
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+  vue-demi: true

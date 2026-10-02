@@ -1,0 +1,11 @@
+node_modules
+*.log
+dist
+.output
+.nuxt
+.env
+.DS_Store
+tsconfig.tsbuildinfo
+.eslintcache
+.claude/settings.local.json
+coverage
