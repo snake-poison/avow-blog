@@ -117,3 +117,9 @@ The site is built for `https://blog.itsavow.com` (`nuxt.config.ts`, `public/CNAM
 Cloudflare: a `CNAME` record from `blog` to `snake-poison.github.io`, set to DNS only (not
 proxied) so GitHub can issue the certificate. Then Settings > Pages > Custom domain is
 `blog.itsavow.com`, with Enforce HTTPS on.
+
+After each deploy, `scripts/indexnow.mjs` sends IndexNow (Bing, Yandex, Seznam and others) the
+pages that are new or have a newer `lastmod` than the sitemap that was live before. The key is
+`public/<key>.txt`, a file holding its own name. To resend every page, run
+`pnpm generate && node scripts/indexnow.mjs --all`. Google does not use IndexNow; it reads the
+sitemap, submitted in Search Console.

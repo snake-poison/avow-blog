@@ -68,9 +68,18 @@ jobs:
       - name: Build
         run: pnpm run generate
 
+      # What the site serves before this deploy, so IndexNow hears only about what changed.
+      - name: Save the live sitemap
+        run: curl -fsS https://blog.itsavow.com/sitemap.xml -o "$RUNNER_TEMP/live-sitemap.xml" || touch "$RUNNER_TEMP/live-sitemap.xml"
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: .output/public
 
       - id: deployment
         uses: actions/deploy-pages@v5
+
+      # The site is live; a failed ping is worth a look but does not undo the deploy.
+      - name: Tell IndexNow what changed
+        continue-on-error: true
+        run: node scripts/indexnow.mjs "$RUNNER_TEMP/live-sitemap.xml"
