@@ -15,7 +15,7 @@ title: What to do in the first 48 hours after property damage
 description: 50 to 160 characters. Search results show this under the title.
 date: 2026-10-02
 updated: 2026-11-01          # optional; shown, and used as dateModified
-author: avow-team            # content/authors/<id>.yml
+author: ramy-melo            # content/authors/<id>.yml
 audience: [homeowners, public-adjusters]   # one or more of: homeowners, insurance, public-adjusters
 tags: [Claims process]       # each gets a page at /tags/<slug>/
 image:                       # optional; the lead photo, also on the post's card
@@ -57,7 +57,10 @@ The caption.
 
 **For search and answer engines.** Put the answer first: the `summary`, then a first paragraph
 that states it plainly. Use question-shaped `##` headings where a reader would ask one. Add an
-`faq` for the questions people search word for word. Name a real author with a role and bio.
+`faq` for the questions people search word for word. Name a real author: `content/authors/<id>.yml` takes a role, a bio, a square headshot
+(`image`), the byline `credential` and a `license` with the regulator's lookup URL. Insurance
+is a Your Money or Your Life topic, so search engines look for who wrote a post and why to trust
+them; the license goes into the post's structured data as a credential.
 Each post is listed in `/llms.txt` and its Markdown is served at `/raw/blog/<slug>.md`.
 
 ## Commands

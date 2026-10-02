@@ -53,7 +53,18 @@ useSchemaOrg([
           jobTitle: author.value.role,
           description: author.value.bio,
           url: author.value.url,
-          sameAs: author.value.sameAs,
+          image: author.value.image,
+          knowsAbout: author.value.knowsAbout,
+          hasCredential: author.value.license == null
+            ? undefined
+            : {
+                '@type': 'EducationalOccupationalCredential',
+                'credentialCategory': 'license',
+                'name': author.value.license.name,
+                'url': author.value.license.url,
+                'recognizedBy': { '@type': 'Organization', 'name': author.value.license.issuer },
+              },
+          sameAs: [...author.value.sameAs, ...(author.value.license == null ? [] : [author.value.license.url])],
         }),
   }),
   defineBreadcrumb({
@@ -113,7 +124,19 @@ const toc = page.body.toc?.links ?? []
         {{ page.description }}
       </p>
       <UIText variant="label" as="p" class="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-        <span v-if="author">By {{ author.name }}</span>
+        <span v-if="author" class="flex items-center gap-2">
+          <NuxtImg
+            v-if="author.image"
+            :src="author.image"
+            alt=""
+            width="24"
+            height="24"
+            densities="x1 x2"
+            format="webp"
+            class="size-6 rounded-full bg-paper-2"
+          />
+          By {{ author.name }}<template v-if="author.credential">, {{ author.credential }}</template>
+        </span>
         <span v-if="author" aria-hidden="true">·</span>
         <time :datetime="published">{{ formatDate(page.date) }}</time>
         <template v-if="page.updated">
@@ -167,8 +190,19 @@ const toc = page.body.toc?.links ?? []
             </li>
           </ul>
 
-          <UICard v-if="author" as="section" radius="2xl" aria-label="About the author" class="flex gap-4">
-            <UIAppLogo class="size-12 shrink-0" />
+          <UICard v-if="author" as="section" radius="2xl" aria-label="About the author" class="flex gap-4 sm:gap-5">
+            <NuxtImg
+              v-if="author.image"
+              :src="author.image"
+              :alt="`${author.name}`"
+              width="64"
+              height="64"
+              densities="x1 x2"
+              format="webp"
+              loading="lazy"
+              class="size-16 shrink-0 rounded-full border border-rule-soft bg-paper-2"
+            />
+            <UIAppLogo v-else class="size-12 shrink-0" />
             <div>
               <UIText variant="label">
                 Written by
@@ -181,6 +215,12 @@ const toc = page.body.toc?.links ?? []
               </UIText>
               <UIText class="mt-3">
                 {{ author.bio }}
+              </UIText>
+              <UIText v-if="author.license" variant="small" class="mt-3 flex items-start gap-1.5">
+                <span class="mt-0.5 icon-[carbon--certificate-check] shrink-0 text-accent-2" aria-hidden="true" />
+                <a :href="author.license.url" rel="noopener" class="underline underline-offset-2 hover:text-ink">
+                  {{ author.license.name }} (NAIC lookup)
+                </a>
               </UIText>
             </div>
           </UICard>

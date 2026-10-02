@@ -53,7 +53,19 @@ const authors = defineCollection({
     name: z.string(),
     role: z.string(),
     bio: z.string(),
+    // After the name in a post's byline: "By Ramy Melo, licensed public adjuster".
+    credential: z.string().optional(),
     url: z.url().optional(),
+    // A square headshot under public/.
+    image: z.string().startsWith('/').optional(),
+    // The licence that qualifies them to write on claims, and the regulator's page that shows
+    // it. Insurance is a Your Money or Your Life topic: search engines weigh this.
+    license: z.object({
+      name: z.string(),
+      issuer: z.string(),
+      url: z.url(),
+    }).optional(),
+    knowsAbout: z.array(z.string()).default([]),
     // Profiles elsewhere (LinkedIn, a licence lookup) for schema.org Person.sameAs.
     sameAs: z.array(z.url()).default([]),
   }),
