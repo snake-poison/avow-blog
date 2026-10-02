@@ -63,6 +63,18 @@ is a Your Money or Your Life topic, so search engines look for who wrote a post 
 them; the license goes into the post's structured data as a credential.
 Each post is listed in `/llms.txt` and its Markdown is served at `/raw/blog/<slug>.md`.
 
+### In the browser, with Pages CMS
+
+[Pages CMS](https://app.pagescms.org) edits posts and authors from a form, configured by
+`.pages.yml`. Sign in with GitHub and open this repository. Each save is a commit to the branch
+you are on, so a save to `main` publishes once CI passes. New posts start as drafts: untick
+Draft to publish. Uploaded photos go to `public/images/`, and any size is fine because the build
+resizes them.
+
+The body is a Markdown source editor, not a rich-text one, because the rich-text editor would
+flatten the blocks above. A new author also has to be added to the `author` choices in
+`.pages.yml`; `test/unit/pagesCms.spec.ts` fails until it is.
+
 ## Commands
 
 ```sh

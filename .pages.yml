@@ -1,0 +1,239 @@
+# Pages CMS (https://pagescms.org): a web editor for the posts and authors. It commits to the
+# repository like anyone else, so every save runs CI, and a save to main publishes.
+#
+# The rules mirror content.config.ts, which stays the source of truth: a post the build rejects
+# is left out of the site, and the site tests then fail the deploy. test/unit/pagesCms.spec.ts
+# keeps the author and audience lists here in step with the content.
+
+media:
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+    categories: [image]
+    rename: safe
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: content/blog
+    filename:
+      template: '{primary}.md'
+      field: create
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: The headline. Its words become the URL, /blog/<title>/, unless you change the filename.
+      - name: description
+        label: Description
+        type: text
+        required: true
+        description: What search results show under the title. 50 to 160 characters.
+        options:
+          minlength: 50
+          maxlength: 160
+      - name: date
+        label: Published
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updated
+        label: Updated
+        type: date
+        default: ''
+        description: Set when you change a published post in a way a reader would care about.
+        options:
+          format: yyyy-MM-dd
+      - name: author
+        label: Author
+        type: select
+        required: true
+        default: ramy-melo
+        description: Add a new author under Authors, then to this list in .pages.yml.
+        options:
+          values:
+            - name: ramy-melo
+              label: Ramy Melo
+            - name: hana
+              label: Hana
+      - name: audience
+        label: Written for
+        type: select
+        required: true
+        description: The first one is who the post is mainly for.
+        options:
+          multiple: true
+          min: 1
+          values:
+            - name: homeowners
+              label: Homeowners
+            - name: insurance
+              label: Insurance professionals
+            - name: public-adjusters
+              label: Public adjusters
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        description: Each tag gets its own page. Reuse an existing one where it fits, spelled the same.
+      - name: draft
+        label: Draft
+        type: boolean
+        default: true
+        description: Drafts are saved but not published. Untick to publish.
+      - name: image
+        label: Lead photo
+        type: object
+        description: Optional. Shown under the title and on the post's card.
+        fields:
+          - name: src
+            label: Photo
+            type: image
+            required: true
+            options:
+              media: images
+              path: public/images/blog
+          - name: alt
+            label: Alt text
+            type: text
+            required: true
+            description: What the photo shows, for someone who cannot see it.
+          - name: caption
+            label: Caption
+            type: text
+          - name: credit
+            label: Credit
+            type: string
+            required: true
+            description: Who took it, e.g. "Patsy Lynch / FEMA".
+          - name: creditUrl
+            label: Credit link
+            type: string
+            description: The page that licenses the photo.
+            pattern:
+              regex: ^https?://
+              message: A full link, starting with https://
+      - name: summary
+        label: In short
+        type: text
+        description: The answer in two or three plain sentences, shown above the post. Answer engines quote it.
+      - name: faq
+        label: FAQ
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{question}'
+        description: Questions people search word for word. Shown at the end and marked up for search.
+        fields:
+          - name: question
+            label: Question
+            type: string
+            required: true
+          - name: answer
+            label: Answer
+            type: text
+            required: true
+      # Markdown source, not the rich-text editor: that editor rewrites the post blocks
+      # (::post-steps, ::post-photo, :post-when[…]) into plain text. README.md lists them.
+      - name: body
+        label: Body
+        type: code
+        options:
+          format: markdown
+
+  - name: authors
+    label: Authors
+    type: collection
+    path: content/authors
+    format: yaml
+    filename:
+      template: '{primary}.yml'
+      field: create
+    view:
+      fields: [name, role]
+      primary: name
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: role
+        label: Role
+        type: string
+        required: true
+        description: e.g. "Licensed public adjuster, founder of Avow".
+      - name: credential
+        label: Byline credential
+        type: string
+        description: After the name in a byline, e.g. "licensed public adjuster".
+      - name: bio
+        label: Bio
+        type: text
+        required: true
+      - name: url
+        label: Website
+        type: string
+        pattern:
+          regex: ^https?://
+          message: A full link, starting with https://
+      - name: image
+        label: Headshot
+        type: image
+        description: Square, at least 400 pixels.
+        options:
+          media: images
+          path: public/images/authors
+      - name: license
+        label: License
+        type: object
+        fields:
+          - name: name
+            label: License
+            type: string
+            required: true
+            description: e.g. "North Carolina public adjuster license".
+          - name: issuer
+            label: Issued by
+            type: string
+            required: true
+            description: e.g. "North Carolina Department of Insurance".
+          - name: url
+            label: Lookup link
+            type: string
+            required: true
+            description: The regulator's page that shows the license.
+            pattern:
+              regex: ^https?://
+              message: A full link, starting with https://
+      - name: knowsAbout
+        label: Knows about
+        type: string
+        list: true
+      - name: sameAs
+        label: Profiles
+        type: string
+        list: true
+        description: LinkedIn and other public profiles.
+
+settings:
+  content:
+    # Keep any frontmatter this file does not describe, rather than dropping it on save.
+    merge: true
+  commit:
+    templates:
+      create: 'docs: add {path} (via Pages CMS)'
+      update: 'docs: update {path} (via Pages CMS)'
+      delete: 'docs: remove {path} (via Pages CMS)'
+      rename: 'docs: rename {oldPath} to {newPath} (via Pages CMS)'
