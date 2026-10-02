@@ -97,8 +97,9 @@ export default defineNuxtConfig({
 
   experimental: {
     typedPages: true,
-    // No runtime reads a payload (routeRules), so none is written.
-    payloadExtraction: false,
+    // 'client' keeps full-static output happy; pages have no runtime (routeRules), so
+    // nothing reads the payload and the HTML is unchanged.
+    payloadExtraction: 'client',
     defaults: {
       nuxtLink: { trailingSlash: 'append' },
     },
@@ -120,6 +121,19 @@ export default defineNuxtConfig({
       // The crawler starts at /; the sitemap, robots and llms modules add their own files.
     },
     compressPublicAssets: false,
+    rollupConfig: {
+      onwarn(warning, defaultHandler) {
+        // This replaces Nitro's own filter, so keep its two codes quiet as well.
+        if (warning.code === 'CIRCULAR_DEPENDENCY' || warning.code === 'EVAL') {
+          return
+        }
+        // @nuxt/nitro-server's h3.mjs imports cookie helpers it never uses; nothing here to fix.
+        if (warning.code === 'UNUSED_EXTERNAL_IMPORT' && warning.ids?.some(id => id.includes('@nuxt+nitro-server'))) {
+          return
+        }
+        defaultHandler(warning)
+      },
+    },
   },
 
   vite: {
@@ -149,6 +163,11 @@ export default defineNuxtConfig({
       url: publisher.url,
       logo: publisher.logo,
     },
+  },
+
+  // The sitemap is written at prerender time and nothing serves it live.
+  sitemap: {
+    zeroRuntime: true,
   },
 
   ogImage: {
