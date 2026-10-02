@@ -189,7 +189,7 @@ const toc = page.body.toc?.links ?? []
 
       <!-- The outline, beside the body on wide screens. Plain anchor links: no script. -->
       <aside v-if="toc.length > 0" class="hidden lg:block" aria-labelledby="toc-heading">
-        <nav class="sticky top-8">
+        <nav class="sticky top-24">
           <UIText id="toc-heading" variant="label" as="h2">
             On this page
           </UIText>

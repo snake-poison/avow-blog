@@ -20,19 +20,22 @@ export const audienceIds = ['homeowners', 'insurance', 'public-adjusters'] as co
 
 export type Audience = typeof audienceIds[number]
 
-export const audiences: Record<Audience, { label: string, title: string, description: string }> = {
+export const audiences: Record<Audience, { label: string, short: string, title: string, description: string }> = {
   'homeowners': {
     label: 'Homeowners',
+    short: 'Homeowners',
     title: 'Insurance claims for homeowners',
     description: 'How to document a loss, read your policy and get a fair settlement on a homeowners insurance claim.',
   },
   'insurance': {
     label: 'Insurance professionals',
+    short: 'Insurance pros',
     title: 'For insurance professionals',
     description: 'Claims handling, coverage questions and the policyholder side of property claims, for agents, carriers and adjusters.',
   },
   'public-adjusters': {
     label: 'Public adjusters',
+    short: 'Public adjusters',
     title: 'For public adjusters',
     description: 'Working claims for policyholders: documentation, estimates, appraisal and getting paid.',
   },
