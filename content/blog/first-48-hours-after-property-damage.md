@@ -49,13 +49,13 @@ Your policy almost certainly requires you to protect the property from further d
 - **Roof:** tarp it, or have someone tarp it, before the next rain.
 - **Openings:** board up broken windows and doors.
 - **Belongings:** move anything undamaged somewhere dry.
-- **Moisture:** start drying wet rooms with fans and a dehumidifier. Mould can start growing within 24 to 48 hours.
+- **Moisture:** start drying wet rooms with fans and a dehumidifier. Mold can start growing within 24 to 48 hours.
 
 ::post-photo{src="/images/blog/first-48-hours/roof-tarp.jpg" alt="Three men on a shingled roof roll out and cut a large blue tarp to cover storm damage." credit="Win Henderson / FEMA" credit-url="https://commons.wikimedia.org/wiki/File:FEMA_-_44271_-_Temporary_roof_repair_in_Oklahoma.jpg"}
 A temporary roof after a tornado in Oklahoma. A tarp is mitigation; new shingles are a repair.
 ::
 
-Keep it temporary, and keep the receipt for every tarp, board, fan and hour of labour. Reasonable mitigation costs are usually paid as part of the claim. Permanent repairs made before the insurer has seen the damage are where disputes begin.
+Keep it temporary, and keep the receipt for every tarp, board, fan and hour of labor. Reasonable mitigation costs are usually paid as part of the claim. Permanent repairs made before the insurer has seen the damage are where disputes begin.
 
 :post-when[Before anything moves]
 
