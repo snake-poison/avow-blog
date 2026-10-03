@@ -1,7 +1,12 @@
 /*
  * A post's body, as Nuxt Content renders it from Markdown. The elements come without classes,
  * so they are styled here, in the theme's named colours, rather than by Prose components.
+ *
+ * Only post pages load this (pages/blog/[...slug].vue), so the rest of the site does not carry
+ * it. The reference adds nothing to the output; it makes Tailwind compile the file, flattening
+ * the nesting for browsers without it.
  */
+@reference './main.css';
 .post-body {
   color: var(--color-ink-soft);
   font-size: 1.0625rem;

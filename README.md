@@ -96,8 +96,9 @@ pnpm ds:diff      # compare the design system with ~/Code/Avow
 
 - **Static, with no JS runtime.** Every route is prerendered HTML with its CSS inlined, and
   ships no Nuxt runtime (`routeRules` in `nuxt.config.ts`). The only script is the theme's
-  (`app/constants/themeScript.ts`). `test/site/budget.spec.ts` holds each page to 20 KB
-  compressed with no script or stylesheet requests.
+  (`app/constants/themeScript.ts`). The post body styles are inlined on post pages only.
+  `test/site/budget.spec.ts` holds each page to two round trips on a fresh connection, with
+  no script or stylesheet requests.
 - **SEO.** Canonical URLs, Open Graph and Twitter tags, a generated share image per page
   (`components/OgImage`), schema.org (`BlogPosting`, `Person`, `BreadcrumbList`, `FAQPage`,
   `Organization`), `sitemap.xml` and `robots.txt`. `test/site` checks all of it in the build.

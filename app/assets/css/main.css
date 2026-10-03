@@ -4,7 +4,6 @@
  */
 @import 'tailwindcss' source('../../..');
 @import '../../../layers/ui/app/assets/css/tailwind-theme.css';
-@import './prose.css';
 
 /*
  * Avow's icon map names every icon the app uses; the blog keeps it for the atoms' types only.

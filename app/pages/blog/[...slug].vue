@@ -210,3 +210,6 @@ const toc = page.body.toc?.links ?? []
     </section>
   </article>
 </template>
+
+<!-- A post's body styles, inlined into post pages only: other pages never render one. -->
+<style src="~/assets/css/prose.css"></style>
