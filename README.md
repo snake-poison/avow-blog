@@ -63,8 +63,9 @@ that states it plainly. Use question-shaped `##` headings where a reader would a
 is a Your Money or Your Life topic, so search engines look for who wrote a post and why to trust
 them; the license goes into the post's structured data as a credential. An author with
 `ai: true` (Hana) is an AI writing assistant: name a `reviewedBy` on its posts, which are
-credited to Avow in structured data rather than to a person. Every author credited on a
-published post gets a page at `/authors/<id>/`, listed at `/authors/`.
+credited to Avow in structured data rather than to a person. `test/unit/posts.spec.ts` fails a
+published one without a reviewer, or a post that credits an author not in `content/authors`.
+Every author credited on a published post gets a page at `/authors/<id>/`, listed at `/authors/`.
 Each post is listed in `/llms.txt` and its Markdown is served at `/raw/blog/<slug>.md`.
 
 ### In the browser, with Pages CMS
