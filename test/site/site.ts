@@ -48,7 +48,7 @@ export function fileFor(path: string): string | undefined {
   return existsSync(file) && statSync(file).isFile() ? file : undefined
 }
 
-export interface SourcePost { slug: string, path: string, draft: boolean, hasFaq: boolean }
+export interface SourcePost { slug: string, path: string, draft: boolean, hasFaq: boolean, credited: string[] }
 
 /** The posts under content/blog, from their frontmatter, independent of the build. */
 export function sourcePosts(): SourcePost[] {
@@ -62,6 +62,7 @@ export function sourcePosts(): SourcePost[] {
         path: `/blog/${slug}/`,
         draft: /^draft:\s*true\s*$/m.test(frontmatter),
         hasFaq: /^faq:\s*$/m.test(frontmatter),
+        credited: [...frontmatter.matchAll(/^(?:author|reviewedBy):\s*(\S+)\s*$/gm)].map(match => match[1]!),
       }
     })
 }

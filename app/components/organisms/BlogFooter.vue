@@ -32,6 +32,11 @@ import { audienceIds, audiences, publisher } from '~/constants/site'
               All posts
             </UILink>
           </li>
+          <li>
+            <UILink to="/authors" variant="muted">
+              Authors
+            </UILink>
+          </li>
         </ul>
       </nav>
     </div>

@@ -18,6 +18,9 @@ const blog = defineCollection({
     updated: z.date().optional(),
     // An id from content/authors/<id>.yml.
     author: z.string(),
+    // The licensed person who checked the post, by author id. Shown beside the byline, and the
+    // reason to trust a post drafted by an AI assistant.
+    reviewedBy: z.string().optional(),
     audience: z.array(z.enum(audienceIds)).min(1),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
@@ -53,6 +56,9 @@ const authors = defineCollection({
     name: z.string(),
     role: z.string(),
     bio: z.string(),
+    // An AI writing assistant, not a person: never marked up as a schema.org Person, and its
+    // posts are credited to Avow in structured data.
+    ai: z.boolean().default(false),
     // After the name in a post's byline: "By Ramy Melo, licensed public adjuster".
     credential: z.string().optional(),
     url: z.url().optional(),

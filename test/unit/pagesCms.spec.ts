@@ -20,6 +20,13 @@ describe('the Pages CMS post editor', () => {
     expect(choices('author').toSorted()).toEqual(authors.toSorted())
   })
 
+  it('offers as reviewers only people in content/authors', () => {
+    const people = readdirSync('content/authors')
+      .filter(name => name.endsWith('.yml') && (parse(readFileSync(`content/authors/${name}`, 'utf8')) as { ai?: boolean }).ai !== true)
+      .map(name => name.replace(/\.yml$/, ''))
+    expect(choices('reviewedBy').toSorted()).toEqual(people.toSorted())
+  })
+
   it('offers the audiences the content schema accepts', () => {
     expect(choices('audience')).toEqual([...audienceIds])
   })

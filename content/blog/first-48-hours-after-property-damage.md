@@ -2,7 +2,8 @@
 title: What to do in the first 48 hours after property damage
 description: Five steps that protect a homeowners insurance claim in the first two days after a storm, fire or leak, and the mistakes that are hard to undo.
 date: 2026-10-02
-author: ramy-melo
+author: hana
+reviewedBy: ramy-melo
 audience: [homeowners, public-adjusters]
 tags: [Claims process, Documentation]
 image:

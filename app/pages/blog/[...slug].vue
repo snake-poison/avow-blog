@@ -11,13 +11,15 @@ if (post.value == null || (post.value.draft && !import.meta.dev)) {
 }
 const page = post.value
 
-const [{ data: author }, { data: related }] = await Promise.all([
-  useAsyncData(`author:${page.author}`, async () =>
-    queryCollection('authors').where('stem', '=', `authors/${page.author}`).first()),
+const [{ data: credited }, { data: related }] = await Promise.all([
+  useAsyncData(`authors:${creditedIds(page).join(',')}`, async () =>
+    queryCollection('authors').where('stem', 'IN', creditedIds(page).map(id => `authors/${id}`)).all()),
   // Posts for the same first reader, the links a reader who finished this one wants next.
   useAsyncData(`post:${route.path}:related`, async () =>
     queryPosts().where('audience', 'LIKE', `%"${page.audience[0] ?? 'homeowners'}"%`).where('path', '<>', page.path).limit(3).all()),
 ])
+const author = credited.value?.find(item => authorId(item) === page.author)
+const reviewer = page.reviewedBy == null ? undefined : credited.value?.find(item => authorId(item) === page.reviewedBy)
 
 // content.config.ts requires at least one audience; the first is who the post is mainly for.
 const mainAudience = audiences[page.audience[0] ?? 'homeowners']
@@ -33,9 +35,13 @@ useSeoMeta({
   ogDescription: page.description,
   articlePublishedTime: published,
   articleModifiedTime: modified,
-  articleAuthor: author.value == null ? undefined : [author.value.name],
+  articleAuthor: author == null ? undefined : [author.name],
   articleTag: page.tags,
 })
+
+const origin = useSiteConfig().url
+const authorPersonNode = author == null ? undefined : authorPerson(author, origin)
+const reviewerPersonNode = reviewer == null ? undefined : authorPerson(reviewer, origin)
 
 useSchemaOrg([
   defineArticle({
@@ -46,27 +52,15 @@ useSchemaOrg([
     'dateModified': modified,
     'keywords': page.tags,
     'audience': page.audience.map(id => ({ '@type': 'Audience', 'audienceType': audiences[id].label })),
-    'author': author.value == null
-      ? undefined
-      : definePerson({
-          name: author.value.name,
-          jobTitle: author.value.role,
-          description: author.value.bio,
-          url: author.value.url,
-          image: author.value.image,
-          knowsAbout: author.value.knowsAbout,
-          hasCredential: author.value.license == null
-            ? undefined
-            : {
-                '@type': 'EducationalOccupationalCredential',
-                'credentialCategory': 'license',
-                'name': author.value.license.name,
-                'url': author.value.license.url,
-                'recognizedBy': { '@type': 'Organization', 'name': author.value.license.issuer },
-              },
-          sameAs: [...author.value.sameAs, ...(author.value.license == null ? [] : [author.value.license.url])],
-        }),
+    // A post drafted by an AI assistant is Avow's: the assistant is named on the page, and the
+    // person who checked it is the page's reviewedBy.
+    'author': { '@id': authorPersonNode?.['@id'] ?? '#identity' },
   }),
+  defineWebPage({
+    '@type': page.faq.length > 0 ? ['WebPage', 'FAQPage'] : 'WebPage',
+    'reviewedBy': reviewerPersonNode == null ? undefined : { '@id': reviewerPersonNode['@id'] },
+  }),
+  ...[authorPersonNode, reviewerPersonNode].filter(node => node != null).map(node => definePerson(node)),
   defineBreadcrumb({
     itemListElement: [
       { name: 'Home', item: '/' },
@@ -74,12 +68,7 @@ useSchemaOrg([
       { name: page.title, item: `${page.path}/` },
     ],
   }),
-  ...(page.faq.length > 0
-    ? [
-        defineWebPage({ '@type': ['WebPage', 'FAQPage'] }),
-        ...page.faq.map(item => defineQuestion({ name: item.question, acceptedAnswer: item.answer })),
-      ]
-    : []),
+  ...page.faq.map(item => defineQuestion({ name: item.question, acceptedAnswer: item.answer })),
 ])
 
 defineOgImage('AvowBlog', { title: page.title, kicker: mainAudience.label })
@@ -123,21 +112,19 @@ const toc = page.body.toc?.links ?? []
       <p class="mx-auto mt-6 max-w-2xl text-lg/relaxed text-pretty text-ink-soft">
         {{ page.description }}
       </p>
-      <UIText variant="label" as="p" class="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-        <span v-if="author" class="flex items-center gap-2">
-          <NuxtImg
-            v-if="author.image"
-            :src="author.image"
-            alt=""
-            width="24"
-            height="24"
-            densities="x1 x2"
-            format="webp"
-            class="size-6 rounded-full bg-paper-2"
-          />
-          By {{ author.name }}<template v-if="author.credential">, {{ author.credential }}</template>
+      <!-- Who, then when: two lines, so neither breaks mid-way on a phone. -->
+      <div v-if="author" class="mt-6 flex items-center justify-center gap-3">
+        <span class="flex shrink-0 -space-x-2">
+          <AuthorAvatar :author="author" :size="24" eager class="ring-2 ring-paper" />
+          <AuthorAvatar v-if="reviewer" :author="reviewer" :size="24" eager class="ring-2 ring-paper" />
         </span>
-        <span v-if="author" aria-hidden="true">·</span>
+        <UIText variant="label" as="p" class="flex flex-wrap gap-x-3 gap-y-0.5 text-left">
+          <span>By <NuxtLink :to="authorPath(page.author)" class="hover:text-ink hover:underline">{{ author.name }}</NuxtLink><template v-if="author.credential">, {{ author.credential }}</template></span>
+          <span v-if="reviewer" class="hidden sm:inline" aria-hidden="true">·</span>
+          <span v-if="reviewer">Reviewed by <NuxtLink :to="authorPath(authorId(reviewer))" class="hover:text-ink hover:underline">{{ reviewer.name }}</NuxtLink><template v-if="reviewer.credential">, {{ reviewer.credential }}</template></span>
+        </UIText>
+      </div>
+      <UIText variant="label" as="p" class="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
         <time :datetime="published">{{ formatDate(page.date) }}</time>
         <template v-if="page.updated">
           <span aria-hidden="true">·</span>
@@ -190,40 +177,10 @@ const toc = page.body.toc?.links ?? []
             </li>
           </ul>
 
-          <UICard v-if="author" as="section" radius="2xl" aria-label="About the author" class="flex gap-4 sm:gap-5">
-            <NuxtImg
-              v-if="author.image"
-              :src="author.image"
-              :alt="`${author.name}`"
-              width="64"
-              height="64"
-              densities="x1 x2"
-              format="webp"
-              loading="lazy"
-              class="size-16 shrink-0 rounded-full border border-rule-soft bg-paper-2"
-            />
-            <UIAppLogo v-else class="size-12 shrink-0" />
-            <div>
-              <UIText variant="label">
-                Written by
-              </UIText>
-              <UIText variant="title" class="mt-1 text-base">
-                {{ author.name }}
-              </UIText>
-              <UIText variant="small">
-                {{ author.role }}
-              </UIText>
-              <UIText class="mt-3">
-                {{ author.bio }}
-              </UIText>
-              <UIText v-if="author.license" variant="small" class="mt-3 flex items-start gap-1.5">
-                <span class="mt-0.5 icon-[carbon--certificate-check] shrink-0 text-accent-2" aria-hidden="true" />
-                <a :href="author.license.url" rel="noopener" class="underline underline-offset-2 hover:text-ink">
-                  {{ author.license.name }} (NAIC lookup)
-                </a>
-              </UIText>
-            </div>
-          </UICard>
+          <div class="space-y-4">
+            <AuthorCard v-if="author" :author="author" kicker="Written by" />
+            <AuthorCard v-if="reviewer" :author="reviewer" kicker="Reviewed by" />
+          </div>
         </footer>
       </div>
 

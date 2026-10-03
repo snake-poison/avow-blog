@@ -7,7 +7,9 @@ import { pages, readPage } from './site'
  * script but the theme's, nothing preloaded. A change that breaks a budget should say why it
  * is worth it, here, by raising the number.
  */
-const HTML_GZIP_BUDGET = 20 * 1024
+// 22 KB, from 20: the 48-hours guide, at about 1,500 words with an author, a reviewer and
+// their credentials, reached 20 on its text alone. Other pages are about 14.
+const HTML_GZIP_BUDGET = 22 * 1024
 const INLINE_SCRIPT_BUDGET = 4 * 1024
 
 describe.each(pages())('$path', ({ file }) => {

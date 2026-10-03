@@ -27,12 +27,13 @@ describe('a published post', () => {
       author: expect.anything(),
       publisher: expect.anything(),
     })
-    const person = nodes.find(node => hasType(node, 'Person'))
-    expect(person).toMatchObject({ name: expect.any(String), jobTitle: expect.any(String) })
-    // A licence shown in the author card is a credential search engines can read.
-    const license = doc.querySelector<HTMLAnchorElement>('[aria-label="About the author"] a[href]')
-    if (license != null)
-      expect(person?.hasCredential).toMatchObject({ credentialCategory: 'license', url: license.getAttribute('href') })
+    // A license shown on the page is a credential search engines can read, on the person it
+    // belongs to.
+    const people = nodes.filter(node => hasType(node, 'Person'))
+    for (const license of doc.querySelectorAll('[data-license]')) {
+      expect(people.map(person => (person.hasCredential as { url?: string } | undefined)?.url))
+        .toContain(license.getAttribute('href'))
+    }
     expect(nodes.some(node => hasType(node, 'BreadcrumbList'))).toBe(true)
     expect(nodes.some(node => hasType(node, 'FAQPage'))).toBe(hasFaq)
     expect(doc.querySelector('meta[property="og:type"]')?.getAttribute('content')).toBe('article')

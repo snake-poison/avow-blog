@@ -16,6 +16,7 @@ description: 50 to 160 characters. Search results show this under the title.
 date: 2026-10-02
 updated: 2026-11-01          # optional; shown, and used as dateModified
 author: ramy-melo            # content/authors/<id>.yml
+reviewedBy: ramy-melo        # optional; the licensed person who checked it
 audience: [homeowners, public-adjusters]   # one or more of: homeowners, insurance, public-adjusters
 tags: [Claims process]       # each gets a page at /tags/<slug>/
 image:                       # optional; the lead photo, also on the post's card
@@ -60,7 +61,10 @@ that states it plainly. Use question-shaped `##` headings where a reader would a
 `faq` for the questions people search word for word. Name a real author: `content/authors/<id>.yml` takes a role, a bio, a square headshot
 (`image`), the byline `credential` and a `license` with the regulator's lookup URL. Insurance
 is a Your Money or Your Life topic, so search engines look for who wrote a post and why to trust
-them; the license goes into the post's structured data as a credential.
+them; the license goes into the post's structured data as a credential. An author with
+`ai: true` (Hana) is an AI writing assistant: name a `reviewedBy` on its posts, which are
+credited to Avow in structured data rather than to a person. Every author credited on a
+published post gets a page at `/authors/<id>/`, listed at `/authors/`.
 Each post is listed in `/llms.txt` and its Markdown is served at `/raw/blog/<slug>.md`.
 
 ### In the browser, with Pages CMS
