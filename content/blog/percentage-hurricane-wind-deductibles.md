@@ -26,7 +26,7 @@ This guide concerns U.S. residential property insurance. Examples below are simp
 
 ## What is a percentage deductible based on?
 
-The Texas Department of Insurance explains that a percentage deductible is calculated using the home's insured value. The NAIC also describes percentage deductibles as typically tied to that value. Your policy identifies the applicable coverage or other calculation base. [TDI deductible guide](https://www.tdi.texas.gov/tips/deductibles.html), [NAIC hurricane deductible overview](https://content.naic.org/insurance-topics/hurricane-deductibles).
+Using insured value as the base is common across states, as the NAIC's hurricane deductible overview explains. For example, in Texas, the Department of Insurance also describes percentage deductibles this way. This is a common policy structure, not a calculation rule to assume for every policy. Your policy identifies the applicable coverage or other calculation base. [TDI deductible guide](https://www.tdi.texas.gov/tips/deductibles.html), [NAIC hurricane deductible overview](https://content.naic.org/insurance-topics/hurricane-deductibles).
 
 For an illustrative dwelling coverage limit of $400,000:
 
@@ -62,7 +62,7 @@ Florida also uses a calendar-year framework for covered personal residential hur
 
 That is why the slogan “one deductible per year” needs qualification. It does not promise that every later hurricane claim has a zero deductible. Keep earlier claim determinations and ask the insurer to show the remaining balance. Florida's guidance recommends reporting covered hurricane losses even below the deductible so the insurer can record the credit toward that year's hurricane deductible. [Florida hurricane deductible guide](https://www.myfloridacfo.com/division/consumers/consumerprotections/floridashurricanedeductible).
 
-These Florida rules should not be carried over to a different state's policy.
+This calendar-year framework and statewide warning period are Florida-specific rules. Hurricane deductible triggers and how multiple storms are treated vary by state and policy; check the rules where your property is located.
 
 ## Does a hurricane deductible mean flood damage is covered?
 
@@ -86,7 +86,7 @@ Send the relevant declarations page if your calculation differs. A clear discrep
 
 ## Can a contractor make the deductible disappear?
 
-Be careful with a proposal that depends on inflated paperwork or a secret rebate. In Texas, contractors cannot waive, rebate or absorb a property insurance deductible, and an insurer can request proof that it was paid. Other jurisdictions require their own legal check. [TDI roofing and insurance rules](https://www.tdi.texas.gov/consumer/storms/roofing-and-insurance-know-the-law.html).
+Be careful with a proposal that depends on inflated paperwork or a secret rebate. For a state-specific example, the Texas Department of Insurance explains that Texas contractors cannot waive, rebate or absorb a property insurance deductible and that an insurer can request proof of payment. Do not assume Texas's prohibition or proof requirements are identical elsewhere; check your state's rules. [TDI roofing and insurance rules](https://www.tdi.texas.gov/consumer/storms/roofing-and-insurance-know-the-law.html).
 
 Compare written scopes and prices, and record what you actually pay. Do not sign an invoice stating a price you did not incur. If the deductible is unaffordable, discuss a documented payment arrangement with the contractor and ask the insurer what evidence it needs before agreeing to the work.
 

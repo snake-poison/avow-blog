@@ -58,7 +58,7 @@ Do not assume a grouping rule applies everywhere. California has specific protec
 
 An inventory can reveal a mismatch between what you own and the coverage you bought. It cannot turn an uncovered event into a covered loss or remove a policy limit.
 
-Actual cash value generally reflects replacement cost less depreciation. Replacement cost coverage uses the cost of a comparable replacement without a depreciation deduction, subject to the policy's conditions. Ask specifically how those terms apply to **personal property**, even if you already know the valuation terms for the building. [Washington insurance commissioner's valuation explanation](https://www.insurance.wa.gov/insurance-resources/home-insurance/how-home-insurance-works/learn-how-home-insurance-works).
+A common distinction across states is that actual cash value accounts for depreciation, while replacement cost coverage uses the cost of a comparable replacement without that deduction, subject to policy conditions. The [NAIC's homeowners overview](https://content.naic.org/consumer/homeowners-insurance.htm) describes this distinction; Washington's Office of the Insurance Commissioner offers a state regulator's explanation. Exact valuation rules can still vary by state. Ask specifically how those terms apply to **personal property**, even if you already know the valuation terms for the building. [Washington insurance commissioner's valuation explanation](https://www.insurance.wa.gov/insurance-resources/home-insurance/how-home-insurance-works/learn-how-home-insurance-works).
 
 Consider an illustrative inventory entry for a four-year-old television:
 
@@ -67,19 +67,19 @@ Consider an illustrative inventory entry for a four-year-old television:
 - Photos: television in the living room, model label and serial number.
 - Condition: working before the loss, with the age identified as approximate.
 
-Neither $900 nor $650 is automatically the settlement. The comparable model could require discussion; depreciation, deductible and limits may apply. Under some replacement cost terms, payment of withheld depreciation follows replacement and proof of spending. Ask about deadlines before purchasing a replacement. Texas's consumer guide describes that two-stage process for personal property replacement cost claims. [Texas home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
+Neither $900 nor $650 is automatically the settlement. The comparable model could require discussion; depreciation, deductible and limits may apply. Under some replacement cost terms, payment of withheld depreciation follows replacement and proof of spending. Ask about deadlines before purchasing a replacement. For example, the Texas Department of Insurance describes that two-stage process for personal property replacement cost claims. It illustrates a payment arrangement you may encounter in other states, rather than a universal payment schedule or deadline. [Texas home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
 
 The point of the entry is to make the discussion specific. “Television” alone leaves size, quality and features unexplained.
 
 ## Which belongings need a separate coverage conversation?
 
-Flag jewelry, antiques, art, collectibles, firearms and other valuables for your agent. California's residential insurance guide explains that certain categories have limited coverage and that separately scheduling items may be appropriate. The applicable amounts and causes of loss come from your own contract. [California residential insurance guide](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-ins-guide.cfm).
+Flag jewelry, antiques, art, collectibles, firearms and other valuables for your agent. Special limits on valuables are common across states, as the [NAIC's homeowners overview](https://content.naic.org/consumer/homeowners-insurance.htm) explains. For example, California's Department of Insurance also describes category limits and separately scheduling items. Neither guide sets the limits for your policy: the amounts and covered causes of loss come from your own contract. [California residential insurance guide](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-ins-guide.cfm).
 
 Bring a short question list to the conversation: Is the item covered for the risks I care about? Is there a category or per-item limit? Is an appraisal required? Does an endorsement change valuation or the deductible? Keep the written response with the policy, then check the issued endorsement rather than relying only on the conversation.
 
 ## Where should you store the inventory?
 
-Keep a copy outside the home, with the photos and supporting records. Washington's consumer guide recommends secure secondary storage and annual updates. [Washington home insurance consumer guide](https://www.insurance.wa.gov/sites/default/files/documents/homeowner-insurance-guide_0.pdf).
+Keep a copy outside the home, with the photos and supporting records. For example, Washington's Office of the Insurance Commissioner recommends secure secondary storage and annual updates. This is practical preparedness advice that works across states, rather than a Washington-specific claim requirement. [Washington home insurance consumer guide](https://www.insurance.wa.gov/sites/default/files/documents/homeowner-insurance-guide_0.pdf).
 
 Test access from another device. Make sure the account recovery method is usable if your usual phone is gone. Export a copy from any inventory app and check that the export includes the information you expect. Protect sensitive records with strong account security and avoid putting serial numbers, valuables or your address in a public folder.
 

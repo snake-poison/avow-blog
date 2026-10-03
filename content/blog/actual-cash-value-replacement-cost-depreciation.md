@@ -26,7 +26,7 @@ This guide concerns U.S. homeowners claims. The figures below are illustrations;
 
 ## What do actual cash value and replacement cost mean?
 
-Replacement cost is the cost to repair or replace damaged property with comparable kind and quality without deducting depreciation. Actual cash value, often abbreviated ACV, generally reflects replacement cost reduced for depreciation. Washington's insurance regulator explains that the distinction concerns the property's current value versus the cost of a replacement. [Washington home insurance guide](https://www.insurance.wa.gov/insurance-resources/home-insurance/how-home-insurance-works/learn-how-home-insurance-works).
+Replacement cost is the cost to repair or replace damaged property with comparable kind and quality without deducting depreciation. Actual cash value, often abbreviated ACV, generally reflects replacement cost reduced for depreciation. This is a common insurance distinction across states, also described by the [NAIC](https://content.naic.org/consumer/homeowners-insurance.htm). For example, Washington's Office of the Insurance Commissioner explains it in terms of current value versus replacement cost; the exact legal valuation method still depends on the state and policy. [Washington home insurance guide](https://www.insurance.wa.gov/insurance-resources/home-insurance/how-home-insurance-works/learn-how-home-insurance-works).
 
 Depreciation reflects factors such as age and condition. It is a valuation adjustment, not the deductible. Also, “replacement cost minus depreciation” is a useful starting explanation rather than a universal legal formula for every loss. California, for example, describes different ACV measures for total structural losses versus partial structural and contents losses. [California residential insurance guide](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-ins-guide.cfm).
 
@@ -34,7 +34,7 @@ Your declarations page's large coverage limit is a ceiling, not a promise to pay
 
 ## Can one policy have different settlement terms for different property?
 
-Yes. The Texas Department of Insurance explains that you can have replacement cost coverage for the house while personal property is covered at actual cash value. Some policies also settle roof damage differently. [TDI home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
+Yes. Different settlement terms within one policy are a possibility to check in any state. For example, the Texas Department of Insurance explains that a house can have replacement cost coverage while personal property has actual cash value coverage, and that some policies settle roof damage differently. Those are policy examples, not terms required of every Texas policy or policies elsewhere. [TDI home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
 
 Check the dwelling, other structures, personal property and roof provisions separately. Look for a roof payment schedule, an ACV roof endorsement or a restriction on particular materials. Ask your agent to identify the controlling forms, rather than relying on a general description such as “full coverage.”
 
@@ -42,7 +42,7 @@ Make a four-row worksheet with the property category, settlement basis, form num
 
 ## Why can the first check be much smaller than the estimate?
 
-TDI describes a common two-payment process: an initial payment for the estimated repairs less depreciation and the deductible, followed by payment of eligible depreciation after repairs or replacement. The insurer may require receipts. [TDI home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
+For example, the Texas Department of Insurance describes a two-payment process: an initial payment less depreciation and the deductible, followed by eligible depreciation after repairs or replacement, with receipts potentially required. You may encounter this arrangement in other states, but it is not a nationwide payment rule. Your policy and state law determine whether it applies and what documentation and timing are required. [TDI home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
 
 Consider this simplified example of a covered replacement cost claim:
 
@@ -62,7 +62,7 @@ If those assumptions hold, your $2,000 deductible remains your contribution. You
 
 ## What makes depreciation recoverable?
 
-Recoverable depreciation is the withheld portion that may be paid when you satisfy the replacement cost conditions. It is not a bonus or a guaranteed second check. An ACV-only policy, by contrast, can leave the depreciation deduction as part of the final settlement. TDI's comparison shows why switching from replacement cost to ACV can materially reduce payment. [TDI replacement cost versus ACV comparison](https://www.tdi.texas.gov/tips/home-insurance-policies-replacement-cost-or-actual-cash-value.html).
+Recoverable depreciation is the withheld portion that may be paid when you satisfy the replacement cost conditions. It is not a bonus or a guaranteed second check. An ACV-only policy, by contrast, can leave the depreciation deduction as part of the final settlement. For example, the Texas Department of Insurance's comparison illustrates how ACV coverage can reduce payment compared with replacement cost. The financial distinction is relevant across states; the applicable settlement terms remain policy- and state-dependent. [TDI replacement cost versus ACV comparison](https://www.tdi.texas.gov/tips/home-insurance-policies-replacement-cost-or-actual-cash-value.html).
 
 Ask the insurer to identify:
 
@@ -103,6 +103,7 @@ For immediate safety, documentation and reporting steps, see [what to do in the 
 Primary sources checked October 2, 2026:
 
 - [Washington Office of the Insurance Commissioner: Home insurance](https://www.insurance.wa.gov/insurance-resources/home-insurance/how-home-insurance-works/learn-how-home-insurance-works).
+- [NAIC: Homeowners insurance overview](https://content.naic.org/consumer/homeowners-insurance.htm)
 - [Texas Department of Insurance: Home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
 - [Texas Department of Insurance: Replacement cost versus ACV](https://www.tdi.texas.gov/tips/home-insurance-policies-replacement-cost-or-actual-cash-value.html).
 - [California Department of Insurance: Residential insurance](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-ins-guide.cfm).

@@ -26,11 +26,11 @@ The decision is about buying help with a specific problem. Start by naming that 
 
 ## Who does each adjuster represent?
 
-The word “adjuster” does not tell you whose interests the person represents. The insurance company's adjuster investigates the loss and estimates payment for the insurer. A public adjuster is someone you hire to help negotiate the claim on your behalf. See the Texas Department of Insurance's explanations of [company adjusters](https://www.tdi.texas.gov/tips/working-with-adjuster.html) and [public adjusters](https://www.tdi.texas.gov/tips/public-adjusters.html).
+The word “adjuster” does not tell you whose interests the person represents. The insurance company's adjuster investigates the loss and estimates payment for the insurer. A public adjuster is someone you hire to help negotiate the claim on your behalf. This distinction is useful across states; for example, the Texas Department of Insurance explains the roles of [company adjusters](https://www.tdi.texas.gov/tips/working-with-adjuster.html) and [public adjusters](https://www.tdi.texas.gov/tips/public-adjusters.html).
 
 Ask each person, “Who hired you, and who pays you?” A contractor's repair estimate is also different from a contract to represent you in an insurance claim. Check the person's authority before agreeing that they will “handle everything.”
 
-A public adjuster's license is not a law license. If the problem involves legal advice, litigation or interpreting your legal remedies, ask a qualified attorney. Texas expressly prohibits public adjusters from practicing law or giving legal advice. [Texas consumer guidance](https://www.tdi.texas.gov/tips/public-adjusters.html) explains that boundary.
+A public adjuster's license is not a law license. If the problem involves legal advice, litigation or interpreting your legal remedies, ask a qualified attorney. For a state-specific legal example, Texas expressly prohibits public adjusters from practicing law or giving legal advice. Check your state's permitted scope of public adjusting rather than treating Texas's provision as the law everywhere. [Texas consumer guidance](https://www.tdi.texas.gov/tips/public-adjusters.html) explains that boundary.
 
 ## When might professional help be worth the cost?
 
@@ -43,7 +43,7 @@ There is no useful universal dollar threshold. A large claim can be straightforw
 
 These are reasons to investigate help, not predictions of a larger settlement. Ask the candidate to identify the work they would perform and the evidence still missing.
 
-You can also begin directly with the insurer. California's Department of Insurance advises trying to settle directly and says homeowners can still hire professional help later. [California's disaster consumer guidance](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/dont-get-Scammed.cfm) also recommends understanding the services and fees before hiring.
+You can also begin directly with the insurer. For example, California's Department of Insurance advises trying to settle directly and says homeowners can still hire professional help later. This is a practical option to consider across states, rather than a requirement to wait before hiring help. [California's disaster consumer guidance](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/dont-get-Scammed.cfm) also recommends understanding the services and fees before hiring.
 
 ## How do you verify a public adjuster's license?
 
@@ -51,7 +51,7 @@ Get the individual's full legal name, license number and business name. Search t
 
 Compare the record with the contract and the person presenting it. Ask who will inspect your property and manage the file if the person selling the service is someone else. Where a firm license is required, check the firm as well.
 
-Ask the regulator what complaint and disciplinary information it can provide. Texas specifically recommends checking license status, complaints and disciplinary actions through its help line. [TDI's hiring guidance](https://www.tdi.texas.gov/tips/public-adjusters.html) gives the contact information. A license check is a starting point; interview references about responsiveness, clear billing and the quality of documentation.
+Ask the regulator what complaint and disciplinary information it can provide. For example, the Texas Department of Insurance recommends checking license status, complaints and disciplinary actions through its help line. Homeowners elsewhere should use their own regulator's lookup and complaint channels; availability of public records varies. [TDI's hiring guidance](https://www.tdi.texas.gov/tips/public-adjusters.html) gives the contact information. A license check is a starting point; interview references about responsiveness, clear billing and the quality of documentation.
 
 ## What questions should you ask before signing?
 
@@ -75,7 +75,7 @@ For an illustrative calculation, a 10% fee on a $60,000 payment is $6,000. If th
 
 Ask the candidate to calculate three scenarios: no increase in the insurer's offer, a modest increase and payment of a coverage limit. Include any additional expenses and identify when each fee becomes due. Compare the money available for repairs after the fee, alongside your deductible and other expenses.
 
-Texas warns that the fee may apply to the entire settlement and may still be owed without an increased offer. Its general ceiling is 10%. [TDI's consumer explanation](https://www.tdi.texas.gov/tips/public-adjusters.html) is a useful reminder to examine the fee base, not just the rate.
+For example, the Texas Department of Insurance warns that a fee may apply to the entire settlement and remain payable without an increased offer. The fee-base question is useful across states, but Texas's general 10% ceiling is a state-specific limit, not a nationwide cap. [TDI's consumer explanation](https://www.tdi.texas.gov/tips/public-adjusters.html) is a useful reminder to examine the fee base, not just the rate.
 
 ## How do contract and cancellation rules differ by state?
 
@@ -89,13 +89,13 @@ These examples show why you should check current local law rather than borrow a 
 
 Sources: [Texas Insurance Code, sections 4102.103–104](https://statutes.capitol.texas.gov/Docs/IN/pdf/IN.4102.pdf), [California Insurance Code, section 15027](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=15027.) and [Florida Statutes, section 626.854](https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0626/Sections/0626.854.html).
 
-Read the actual notice for delivery requirements. California and Florida specify written notice with proof of mailing. Keep a copy and proof of delivery or mailing as applicable. If the deadline or wording is unclear, contact the regulator promptly rather than waiting for a salesperson to explain it.
+Delivery requirements are also state-specific. For example, the cited California and Florida provisions specify written notice with proof of mailing. Read the notice and law applicable to your own contract; do not assume those states' mailing rules apply elsewhere. Keep a copy and proof of delivery or mailing as applicable. If the deadline or wording is unclear, contact the regulator promptly rather than waiting for a salesperson to explain it.
 
 ## What warning signs should make you pause?
 
 Pause if someone pressures you to sign immediately, leaves fee blanks, guarantees a result or discourages independent license checks. Refuse suggestions to exaggerate damage or claim items you did not own.
 
-Ask about contractor relationships and referral compensation. State restrictions differ: Florida's regulator explains that a public adjuster cannot perform both adjusting and construction work on the same property or have prohibited financial conflicts. [Florida's adjuster compliance guidance](https://www.myfloridacfo.com/division/agents/compliance/adjusters) explains the restriction.
+Ask about contractor relationships and referral compensation. This is a state-specific conflict-of-interest example: Florida's Department of Financial Services explains that a public adjuster cannot perform both adjusting and construction work on the same property or have prohibited financial conflicts. [Florida's adjuster compliance guidance](https://www.myfloridacfo.com/division/agents/compliance/adjusters) explains the restriction.
 
 ::post-checklist{title="Before you hire a public adjuster"}
 - [ ] I verified the individual and any required firm license with the state regulator.

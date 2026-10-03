@@ -26,7 +26,7 @@ Read the loss-of-use section of the full policy, its endorsements and the declar
 
 ## What has to happen before ALE applies?
 
-A typical trigger is damage from an event the policy covers that makes the home unsuitable to live in. The Texas Department of Insurance describes this connection between covered damage, displacement and extra costs. It also notes that leaving solely because of a power outage, without home damage, does not establish ALE under the situation it describes. Your policy and any separate evacuation provisions need their own review. [Texas ALE guidance](https://tdi.texas.gov/tips/additional-living-expenses.html).
+Across states, a common ALE trigger is a covered loss that makes the home unsuitable to live in, as the [NAIC's homeowners overview](https://content.naic.org/consumer/homeowners-insurance.htm) explains. For example, in Texas, the Department of Insurance describes this connection between covered damage, displacement and extra costs. Its guidance says a power outage alone, without home damage, does not qualify in the situation it describes. That Texas example is not a nationwide determination: check your policy's utility-service, evacuation and other loss-of-use provisions and applicable state rules. [Texas ALE guidance](https://tdi.texas.gov/tips/additional-living-expenses.html).
 
 Ask the adjuster to confirm three things in writing: which provision applies, why the home cannot reasonably be occupied, and the date from which eligible expenses will be considered. Send supporting facts, such as the fire report, unsafe access, damaged essential rooms or the repair scope. Do not describe the home as safe just because you can walk inside; explain the actual conditions.
 
@@ -34,7 +34,7 @@ If the first issue is immediate safety, use the [first 48 hours after property d
 
 ## Which extra costs should you discuss with the insurer?
 
-Start with temporary accommodation and increased food costs, then explain the household's practical needs. California's claims guide identifies examples including utility installation, extra travel to work or school, relocation, storage and furniture rental. These are categories to discuss, not a promise that every expense in them will be paid under every policy. [California residential property claims guide](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-prop-claim.cfm).
+Start with temporary accommodation and increased food costs, then explain the household's practical needs. For example, California's Department of Insurance identifies potential ALE expenses including utility installation, extra travel to work or school, relocation, storage and furniture rental. These are useful categories to ask about in any state; their inclusion in California's guide does not guarantee coverage under your policy. [California residential property claims guide](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-prop-claim.cfm).
 
 For accommodation, describe the number of residents, accessibility needs, work and school locations, and whether a kitchen is needed. Keep quotes for realistic options. If the lower-priced option would create substantial travel or meal costs, show that comparison rather than simply selecting the most convenient property.
 
@@ -70,11 +70,11 @@ Send a proposed budget with the accommodation quote, dates and household needs. 
 
 A refundable deposit needs separate tracking: it is money tied up temporarily, and a later refund changes the record. Keep the lease, invoices, payment evidence and any refund together. Do not interpret a verbal accommodation discussion as approval of every fee.
 
-Texas's storm recovery guidance tells policyholders to ask about advances. California's claims guide explains that advances count toward the final claim settlement. Request the process that applies to your claim without assuming either source creates a universal entitlement. [Texas storm recovery guidance](https://www.tdi.texas.gov/consumer/storms/recoverytips.html), [California claims payment guidance](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-prop-claim.cfm).
+As practical guidance, the Texas Department of Insurance recommends asking about advances, and California's Department of Insurance explains that advances count toward the final settlement. Asking is useful across states; a legal right to an advance, its amount and its timing depend on your state and policy. [Texas storm recovery guidance](https://www.tdi.texas.gov/consumer/storms/recoverytips.html), [California claims payment guidance](https://www.insurance.ca.gov/01-consumers/105-type/95-guides/03-res/res-prop-claim.cfm).
 
 ## How do you stop the budget running out before repairs finish?
 
-Find both the **dollar limit** and the **time or duration conditions**. Do not assume a common percentage or a year of coverage is your own entitlement. Texas's home insurance guide warns that expenses beyond the ALE dollar limit can fall to the homeowner. [Texas home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
+Find both the **dollar limit** and the **time or duration conditions**. Do not assume a common percentage or a year of coverage is your own entitlement. This is a common policy-limit concern across states, rather than a Texas-only rule: for example, the Texas Department of Insurance warns that expenses beyond the ALE dollar limit can fall to the homeowner. [Texas home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html).
 
 Track paid amounts, advances, submitted-but-unpaid expenses and future commitments separately. An advance is not a second pot of money. Ask for periodic confirmation of the remaining benefit and compare it with the expected repair timeline.
 
@@ -86,7 +86,7 @@ If repairs slip, document the reason, the revised schedule and your efforts to m
 
 NFIP flood policies do not pay temporary housing or ALE. Private flood products may differ, so identify which policy you actually hold. [NFIP coverage exclusions](https://www.floodsmart.gov/get-insured/buy-a-policy), [Florida flood insurance overview](https://www.myfloridacfo.com/division/consumers/understanding-insurance/flood-insurance-overview).
 
-An evacuation order raises a separate coverage question even when your home is intact. Preserve the order, location and dates, and ask about civil-authority or prohibited-use wording. California has specific rules for qualifying declared emergencies, including restricted access and certain total-loss advances. Those rules have conditions; they should not be presented as nationwide guarantees. [California's 2026 disaster claims guide](https://www.insurance.ca.gov/0200-industry/0050-renew-license/0200-requirements/upload/2026-Guide-for-Adjusting-Property-Claims-in-California-After-a-Major-Disaster_Final.pdf).
+An evacuation order raises a separate coverage question even when your home is intact. Preserve the order, location and dates, and ask about civil-authority or prohibited-use wording. As a state-specific example, California's Department of Insurance describes protections for qualifying declared emergencies, including restricted access and certain total-loss advances. These are California protections with eligibility conditions; homeowners elsewhere should check their own state's rules. [California's 2026 disaster claims guide](https://www.insurance.ca.gov/0200-industry/0050-renew-license/0200-requirements/upload/2026-Guide-for-Adjusting-Property-Claims-in-California-After-a-Major-Disaster_Final.pdf).
 
 If an expense is rejected, ask for the calculation, the missing evidence and the policy provision relied on. Respond to the specific issue. If the explanation remains unclear, contact your state insurance department about its complaint process while continuing to observe claim deadlines.
 
@@ -94,6 +94,7 @@ If an expense is rejected, ask for the calculation, the missing evidence and the
 
 Research checked October 2, 2026. This draft requires licensed review before publication; coverage decisions depend on the actual policy and applicable state law.
 
+- [NAIC: Homeowners insurance overview](https://content.naic.org/consumer/homeowners-insurance.htm)
 - [Texas: When policies pay additional living expenses](https://tdi.texas.gov/tips/additional-living-expenses.html)
 - [Texas: Home insurance guide](https://www.tdi.texas.gov/pubs/consumer/cb025.html)
 - [Texas: Storm recovery guidance](https://www.tdi.texas.gov/consumer/storms/recoverytips.html)
