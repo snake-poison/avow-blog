@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { isScheduled } from '~/utils/schedule'
 
 export const publicDir = '.output/public'
 export const siteUrl = 'https://blog.itsavow.com'
@@ -13,6 +14,14 @@ export const draftFixture = {
   target: 'content/blog/test-draft-fixture.md',
   slug: 'test-draft-fixture',
   path: '/blog/test-draft-fixture/',
+}
+
+/** A post dated in the future, added the same way, so the specs can check it waits for its day. */
+export const scheduledFixture = {
+  source: 'test/fixtures/scheduled-post.md',
+  target: 'content/blog/test-scheduled-fixture.md',
+  slug: 'test-scheduled-fixture',
+  path: '/blog/test-scheduled-fixture/',
 }
 
 /** Every page a reader can land on, by URL path (`/blog/x/`), with its built file. */
@@ -48,7 +57,17 @@ export function fileFor(path: string): string | undefined {
   return existsSync(file) && statSync(file).isFile() ? file : undefined
 }
 
-export interface SourcePost { slug: string, path: string, draft: boolean, hasFaq: boolean, credited: string[] }
+export interface SourcePost {
+  slug: string
+  path: string
+  draft: boolean
+  /** Dated after today, so left out of the build until its day. */
+  scheduled: boolean
+  /** Neither a draft nor scheduled: what the built site should carry. */
+  published: boolean
+  hasFaq: boolean
+  credited: string[]
+}
 
 /** The posts under content/blog, from their frontmatter, independent of the build. */
 export function sourcePosts(): SourcePost[] {
@@ -57,10 +76,15 @@ export function sourcePosts(): SourcePost[] {
     .map((name) => {
       const frontmatter = /^---\n([\s\S]*?)\n---/.exec(readFileSync(join('content/blog', name), 'utf8'))?.[1] ?? ''
       const slug = name.replace(/\.md$/, '')
+      const draft = /^draft:\s*true\s*$/m.test(frontmatter)
+      const date = /^date:\s*(\d{4}-\d{2}-\d{2})\s*$/m.exec(frontmatter)?.[1]
+      const scheduled = date != null && isScheduled(date)
       return {
         slug,
         path: `/blog/${slug}/`,
-        draft: /^draft:\s*true\s*$/m.test(frontmatter),
+        draft,
+        scheduled,
+        published: !draft && !scheduled,
         hasFaq: /^faq:\s*$/m.test(frontmatter),
         credited: [...frontmatter.matchAll(/^(?:author|reviewedBy):\s*(\S+)\s*$/gm)].map(match => match[1]!),
       }

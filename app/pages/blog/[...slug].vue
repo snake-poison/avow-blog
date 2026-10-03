@@ -6,7 +6,7 @@ const route = useRoute('blog-slug')
 const { data: post } = await useAsyncData(`post:${route.path}`, async () =>
   queryCollection('blog').path(route.path).first())
 
-if (post.value == null || (post.value.draft && !import.meta.dev)) {
+if (post.value == null || ((post.value.draft || isScheduled(post.value.date)) && !import.meta.dev)) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 }
 const page = post.value
@@ -135,6 +135,9 @@ const toc = page.body.toc?.links ?? []
       </UIText>
       <UIBadge v-if="page.draft" tone="warn" class="mt-4">
         Draft: not published
+      </UIBadge>
+      <UIBadge v-else-if="isScheduled(page.date)" tone="info" class="mt-4">
+        Scheduled: goes live {{ formatDate(page.date) }}
       </UIBadge>
     </header>
 

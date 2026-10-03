@@ -13,7 +13,7 @@ Add `content/blog/<slug>.md`. It is published at `/blog/<slug>/`.
 ---
 title: What to do in the first 48 hours after property damage
 description: 50 to 160 characters. Search results show this under the title.
-date: 2026-10-02
+date: 2026-10-02             # the day it goes live; a future date schedules it
 updated: 2026-11-01          # optional; shown, and used as dateModified
 author: ramy-melo            # content/authors/<id>.yml
 reviewedBy: ramy-melo        # optional; the licensed person who checked it
@@ -34,6 +34,12 @@ draft: true                  # shown in `pnpm dev`, never built
 ```
 
 The build fails on a post that breaks the schema in `content.config.ts`.
+
+**Scheduling.** A post dated after today (in North Carolina) is left out of the build like a
+draft: no page, no listing, no sitemap or llms.txt entry. CI rebuilds and deploys `main` every
+morning at 10:30 UTC, so a post goes live early on the day it is dated. Merge it whenever it is
+ready. To publish what is due without waiting, run the CI workflow by hand from the Actions
+tab. `pnpm dev` shows scheduled posts, marked with the day they go live.
 
 **Photos** go in `public/images/blog/<slug>/`, as JPEGs about 2000px wide. The build turns each
 into AVIF and WebP at the widths the page needs. Use photos you have the rights to: the first
@@ -73,7 +79,7 @@ Each post is listed in `/llms.txt` and its Markdown is served at `/raw/blog/<slu
 [Pages CMS](https://app.pagescms.org) edits posts and authors from a form, configured by
 `.pages.yml`. Sign in with GitHub and open this repository. Each save is a commit to the branch
 you are on, so a save to `main` publishes once CI passes. New posts start as drafts: untick
-Draft to publish. Uploaded photos go to `public/images/`, and any size is fine because the build
+Draft to publish, or untick it and set Published to a later day to schedule the post. Uploaded photos go to `public/images/`, and any size is fine because the build
 resizes them.
 
 The body is a Markdown source editor, not a rich-text one, because the rich-text editor would

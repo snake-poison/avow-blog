@@ -4,6 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import { publisher, siteDescription, siteName } from './app/constants/site'
 import { themeScript } from './app/constants/themeScript'
 import { readingMinutes } from './app/utils/readingTime'
+import { releaseDay } from './app/utils/schedule'
 
 // The canonical origin, blog.itsavow.com (public/CNAME). NUXT_SITE_URL and NUXT_APP_BASE_URL
 // are for building it to serve somewhere else, such as a preview under a path.
@@ -205,7 +206,10 @@ export default defineNuxtConfig({
       {
         title: 'Posts',
         contentCollection: 'blog',
-        contentFilters: [{ field: 'draft', operator: '=', value: false }],
+        contentFilters: [
+          { field: 'draft', operator: '=', value: false },
+          { field: 'date', operator: '<=', value: releaseDay() },
+        ],
       },
     ],
   },

@@ -46,6 +46,7 @@ content:
         label: Published
         type: date
         required: true
+        description: The day it goes live. A future date schedules it; it is published that morning.
         options:
           format: yyyy-MM-dd
       - name: updated
