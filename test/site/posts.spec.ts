@@ -1,8 +1,8 @@
 import { existsSync, readFileSync } from 'node:fs'
-import { draftFixture, fileFor, hasType, publicDir, readPage, schemaNodes, siteUrl, sourcePosts } from './site'
+import { draftFixture, fileFor, hasType, publicDir, readPage, scheduledFixture, schemaNodes, siteUrl, sourcePosts } from './site'
 
 const posts = sourcePosts()
-const published = posts.filter(post => !post.draft)
+const published = posts.filter(post => post.published)
 const sitemap = readFileSync(`${publicDir}/sitemap.xml`, 'utf8')
 const llms = readFileSync(`${publicDir}/llms.txt`, 'utf8')
 const llmsFull = readFileSync(`${publicDir}/llms-full.txt`, 'utf8')
@@ -41,8 +41,8 @@ describe('a published post', () => {
   })
 })
 
-describe('a draft', () => {
-  it.each([...posts.filter(post => post.draft), draftFixture])('$slug is not built, listed or quoted anywhere', ({ path, slug }) => {
+describe('a draft or a post scheduled for a later day', () => {
+  it.each([...posts.filter(post => !post.published), draftFixture, scheduledFixture])('$slug is not built, listed or quoted anywhere', ({ path, slug }) => {
     expect(fileFor(path)).toBeUndefined()
     expect(sitemap).not.toContain(path)
     expect(llms).not.toContain(slug)

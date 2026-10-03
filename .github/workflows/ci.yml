@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Publishes posts scheduled for today: the build leaves out any post dated after it
+  # (app/utils/schedule.ts). Cron runs in UTC; 10:30 is 6:30am in North Carolina in summer and
+  # 5:30am in winter, and GitHub can start a scheduled run some minutes late.
+  schedule:
+    - cron: '30 10 * * *'
+  # Run it by hand from the Actions tab to publish anything due without waiting for the morning.
   workflow_dispatch:
 
 concurrency:
@@ -38,9 +44,10 @@ jobs:
       - name: Site tests
         run: pnpm run test:site
 
-  # GitHub Pages, from main only. Settings > Pages > Source must be "GitHub Actions".
+  # GitHub Pages, from main only: on a push, the daily schedule or a run by hand. Settings >
+  # Pages > Source must be "GitHub Actions".
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: check
     runs-on: ubuntu-latest
     permissions:

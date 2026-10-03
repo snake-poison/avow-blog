@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs'
 import { fileFor, hasType, publicDir, readPage, schemaNodes, siteUrl, sourcePosts } from './site'
 
-const published = sourcePosts().filter(post => !post.draft)
+const published = sourcePosts().filter(post => post.published)
 const credited = [...new Set(published.flatMap(post => post.credited))].sort((a, b) => a.localeCompare(b))
 
 describe('the author pages', () => {

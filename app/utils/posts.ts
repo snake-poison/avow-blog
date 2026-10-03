@@ -5,8 +5,11 @@ export const postListFields = ['path', 'title', 'description', 'date', 'audience
 
 export type PostListItem = Pick<BlogCollectionItem, typeof postListFields[number]>
 
-/** Published posts, newest first. `pnpm dev` lists drafts too, so a draft can be read in place. */
+/**
+ * Published posts, newest first: not drafts, and not scheduled for a later day. `pnpm dev` lists
+ * both too, so a post can be read in place before it goes out.
+ */
 export function queryPosts() {
   const query = queryCollection('blog').select(...postListFields).order('date', 'DESC')
-  return import.meta.dev ? query : query.where('draft', '=', false)
+  return import.meta.dev ? query : query.where('draft', '=', false).where('date', '<=', releaseDay())
 }

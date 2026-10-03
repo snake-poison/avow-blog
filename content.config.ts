@@ -14,6 +14,7 @@ const blog = defineCollection({
   schema: z.object({
     // Search results cut a description at about 155 characters.
     description: z.string().min(50).max(160),
+    // The day it goes live. A later date schedules it: see app/utils/schedule.ts.
     date: z.date(),
     updated: z.date().optional(),
     // An id from content/authors/<id>.yml.
@@ -43,8 +44,18 @@ const blog = defineCollection({
     })).default([]),
     // Set at build time from the body (nuxt.config.ts, content:file:afterParse).
     readingTime: z.number().default(1),
-    // Drafts render in `pnpm dev` and never reach the built site, the sitemap or llms.txt.
-    sitemap: defineSitemapSchema({ z, name: 'blog', filter: entry => entry.draft !== true }),
+    // Drafts and scheduled posts render in `pnpm dev` and never reach the built site, the sitemap
+    // or llms.txt. The sitemap module copies this callback into the server bundle as source, so
+    // it cannot import isScheduled() from app/utils/schedule.ts: it repeats it, and the site
+    // tests check the two agree.
+    sitemap: defineSitemapSchema({
+      z,
+      name: 'blog',
+      filter: (entry) => {
+        const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date())
+        return entry.draft !== true && new Date(entry.date).toISOString().slice(0, 10) <= today
+      },
+    }),
   }),
 })
 
