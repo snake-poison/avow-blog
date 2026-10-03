@@ -42,8 +42,7 @@ describe('a published post', () => {
 })
 
 describe('a draft', () => {
-  it('is not built, listed or quoted anywhere', () => {
-    const { path, slug } = draftFixture
+  it.each([...posts.filter(post => post.draft), draftFixture])('$slug is not built, listed or quoted anywhere', ({ path, slug }) => {
     expect(fileFor(path)).toBeUndefined()
     expect(sitemap).not.toContain(path)
     expect(llms).not.toContain(slug)
