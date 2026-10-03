@@ -85,7 +85,7 @@ Call your insurer or use their app as soon as you can. Then:
 
 - **Write down** the claim number, the date and time, and the name of everyone you speak to.
 - **Ask for a certified copy of your full policy**, including the declarations page and every endorsement. The policy you remember is rarely the whole policy.
-- **Ask about living expenses** if you cannot stay in the home. Most homeowners policies include loss-of-use coverage for hotels, meals and other extra costs.
+- **Ask about living expenses** if you cannot stay in the home. Most homeowners policies include [loss-of-use coverage](/blog/additional-living-expenses/) for hotels, meals and other extra costs.
 - **Stick to what you saw.** You do not need to guess at the cause or put a value on the loss on the first call.
 
 ::post-photo{src="/images/blog/first-48-hours/inspection.jpg" alt="A homeowner talks with an inspector holding a tablet beside a pool, in front of a house with a blue tarp across its roof." credit="Jocelyn Augustino / FEMA" credit-url="https://commons.wikimedia.org/wiki/File:FEMA_-_18323_-_Photograph_by_Jocelyn_Augustino_taken_on_11-02-2005_in_Florida.jpg"}
@@ -118,7 +118,7 @@ A claim can run for months. The file is what lets you, or a public adjuster work
 
 The insurer's adjuster works for the insurer. A public adjuster is licensed to work for you: they assess the damage, prepare the claim and negotiate the settlement, usually for a percentage of what is paid. They earn their fee most clearly on large or complicated losses and on claims that have stalled.
 
-If you bring one in, the first thing they will ask for is the file you started on day two.
+If you bring one in, the first thing they will ask for is the file you started on day two. [How to choose a public adjuster](/blog/how-to-choose-a-public-adjuster/) covers what to check before you sign.
 
 ::post-checklist{title="The 48-hour checklist"}
 - [ ] Everyone is out and safe; gas, water or power shut off if needed
